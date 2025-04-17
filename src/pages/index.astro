@@ -1,18 +1,23 @@
 ---
 import Badge from '../components/Badge.astro';
 import Welcome from '../components/Welcome.astro';
+import Experience from '../components/Experience.astro';
+import SectionContainer from '../components/SectionContainer.astro';
 import Layout from '../layouts/Layout.astro';
 import GithubIcon from '../icons/Github.astro';
 import MailIcon from '../icons/Mail.astro';
 import SocialPill from '../icons/SocialPill.astro';
+import MaletinIcon from '../icons/Maletin.astro';
+
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout title="Astro Basics">
+<Layout title="Porfolio de joel perez - Desarollador i programador"
+		description="Contrata a joel perez para desarrollar tus proyectos. Desarrollador web, desarrollador de software, desarrollador de aplicaciones, desarrollador de sistemas, desarrollador de bases de datos, desarrollador de aplicaciones móviles, desarrollador de aplicaciones web, desarrollador de software, etc.">
 	<main>
-		<section class="w-full mx-auto lg:w-[740px] py-44 ">
+		<SectionContainer>
 			<div class="flex flex-col gap-y-4 ">
     			<h1 class="text-white ">
 					<span class="flex flex-row gap-x-4 text-3xl">
@@ -27,17 +32,23 @@ import SocialPill from '../icons/SocialPill.astro';
 				
 				<nav class="flex gap-x-2">
 					<SocialPill href="https://github.com/drepo127">
-						<GithubIcon class="w-6 h-6"/>
+						<GithubIcon class="size-6"/>
 						Github
 					</SocialPill>
 					<SocialPill href="https://mail.google.com/mail/u/0/?fs=1&to=jpdelacasa@gmail.com&su=Estamos+interesados+en+trabajar+contigo&body&tf=cm">
-						<MailIcon class="w-6 h-6"/>
+						<MailIcon class="size-6"/>
 						jpdelacasa@gmail.com
 					</SocialPill>
 				</nav>
-			
 			</div>
-		</section>
+		</SectionContainer>
+		<SectionContainer>
+			<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
+				<MaletinIcon class="size-7"/>
+				Experiencia laboral
+			</h2>
+			<Experience />
+		</SectionContainer>
 	</main>
 	
 </Layout>
