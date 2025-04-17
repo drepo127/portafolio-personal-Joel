@@ -6,8 +6,10 @@ import SectionContainer from '../components/SectionContainer.astro';
 import Layout from '../layouts/Layout.astro';
 import GithubIcon from '../icons/Github.astro';
 import MailIcon from '../icons/Mail.astro';
-import SocialPill from '../icons/SocialPill.astro';
 import MaletinIcon from '../icons/Maletin.astro';
+import LinkedinIcon from '../icons/Linkedin.astro';
+import SocialPill from '../icons/SocialPill.astro';
+
 
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -16,8 +18,8 @@ import MaletinIcon from '../icons/Maletin.astro';
 
 <Layout title="Porfolio de joel perez - Desarollador i programador"
 		description="Contrata a joel perez para desarrollar tus proyectos. Desarrollador web, desarrollador de software, desarrollador de aplicaciones, desarrollador de sistemas, desarrollador de bases de datos, desarrollador de aplicaciones móviles, desarrollador de aplicaciones web, desarrollador de software, etc.">
-	<main>
-		<SectionContainer>
+	<main class="px-4">
+		<SectionContainer class="py-44 pb-24">
 			<div class="flex flex-col gap-y-4 ">
     			<h1 class="text-white ">
 					<span class="flex flex-row gap-x-4 text-3xl">
@@ -30,7 +32,11 @@ import MaletinIcon from '../icons/Maletin.astro';
 					<span class="block text-5xl font-bold pb-4">Joel Pérez de la Casa</span>
 				</h1>
 				
-				<nav class="flex gap-x-2">
+				<nav class="flex gap-4 mt-B flex-wrap">
+					<SocialPill href="https://www.linkedin.com/in/joel-perez-de-la-casa/">
+						<LinkedinIcon class="size-6"/>
+						Linkedin
+					</SocialPill>
 					<SocialPill href="https://github.com/drepo127">
 						<GithubIcon class="size-6"/>
 						Github
@@ -39,10 +45,11 @@ import MaletinIcon from '../icons/Maletin.astro';
 						<MailIcon class="size-6"/>
 						jpdelacasa@gmail.com
 					</SocialPill>
+					
 				</nav>
 			</div>
 		</SectionContainer>
-		<SectionContainer>
+		<SectionContainer id="experiencia">
 			<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
 				<MaletinIcon class="size-7"/>
 				Experiencia laboral
