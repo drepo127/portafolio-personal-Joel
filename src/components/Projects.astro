@@ -1,0 +1,74 @@
+---
+import GithubIcon from "../icons/Github.astro"
+import CodeIcon from "../icons/Code.astro"
+
+const PROJECTS = [
+    {
+        title: "Proyecto 1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        link: "https://www.google.com",
+        github: "https://github.com/",
+        image: 'https://placehold.co/300x200',
+        tags: ["tag1", "tag2", "tag3"]
+    },
+    {
+        title: "Proyecto 2",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        link: "https://www.google.com",
+        image: 'https://placehold.co/300x200',
+        tags: ["tag1", "tag2", "tag3"]
+    },
+    {
+        title: "Proyecto 3",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        image: 'https://placehold.co/300x200',
+        tags: ["tag1", "tag2", "tag3"]
+    },
+]
+---
+
+{
+    PROJECTS.map(({ image, title, description, link, github, tags }) => (
+        <article class="mb-10 ms-6">
+            <h3 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">{title}</h3>
+            <ul class="flex flex-wrap gap-x-2 gap-y-1">
+                {tags.map(tag => (
+                    <li>{tag}</li>
+                ))}
+            </ul>
+            <div class="flex items-center gap-x-2">
+                <p class="mb-4 text-base font-normal text-gray-200 text-pretty dark:text-gray-400">{description}</p>
+            
+                <img src={image} alt={`Captura de pantalla del proyecto ${title}`}  class="rounded-lg shadow-sm hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out" />
+            </div>
+            {
+                github && (
+                    <a href={github} target="_blank" rel="noopener noreferrer">
+                        <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                                <div class="flex items-center gap-x-2">
+                                   <GithubIcon class="size-6"/>
+                                    Github 
+                                </div>
+                            </span>
+                        </button>
+                    </a>
+                )
+            }
+            {
+                link && (
+                    <a href={link} target="_blank" rel="noopener noreferrer">
+                        <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                            <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+                                <div class="flex items-center gap-x-2">
+                                    <CodeIcon class="size-6"/>    
+                                    Proyecto
+                                </div>
+                            </span>
+                        </button>
+                    </a>
+                )
+            }
+        </article>
+    ))
+}

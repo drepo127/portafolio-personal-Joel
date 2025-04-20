@@ -8,7 +8,11 @@ import GithubIcon from '../icons/Github.astro';
 import MailIcon from '../icons/Mail.astro';
 import MaletinIcon from '../icons/Maletin.astro';
 import LinkedinIcon from '../icons/Linkedin.astro';
+import ProjectIcon from '../icons/Code.astro';
+import SobreMiIcon from '../icons/SobreMi.astro';
 import SocialPill from '../icons/SocialPill.astro';
+import Projects from '../components/Projects.astro';
+import AboutMy from '../components/AboutMy.astro';
 
 
 
@@ -19,17 +23,17 @@ import SocialPill from '../icons/SocialPill.astro';
 <Layout title="Porfolio de joel perez - Desarollador i programador"
 		description="Contrata a joel perez para desarrollar tus proyectos. Desarrollador web, desarrollador de software, desarrollador de aplicaciones, desarrollador de sistemas, desarrollador de bases de datos, desarrollador de aplicaciones móviles, desarrollador de aplicaciones web, desarrollador de software, etc.">
 	<main class="px-4">
-		<SectionContainer class="py-44 pb-24">
-			<div class="flex flex-col gap-y-4 ">
+		<SectionContainer id="top" class="py-44 pb-140 pt-80">
+			<div class="flex flex-col gap-y-4 items-center text-center">
     			<h1 class="text-white ">
-					<span class="flex flex-row gap-x-4 text-3xl">
-						Hola, soy 
+					<span class="flex flex-row gap-x-4 text-5xl">
+						Hola, soy 😊
 						<a rel="noopener"
 						class="flex justify-center items-center">
 							<Badge>Readi for code</Badge>
 						</a>
 					</span>
-					<span class="block text-5xl font-bold pb-4">Joel Pérez de la Casa</span>
+					<span class="block text-8xl font-bold pb-4">Joel Pérez</span>
 				</h1>
 				
 				<nav class="flex gap-4 mt-B flex-wrap">
@@ -55,6 +59,22 @@ import SocialPill from '../icons/SocialPill.astro';
 				Experiencia laboral
 			</h2>
 			<Experience />
+		</SectionContainer>
+
+		<SectionContainer id="proyectos">
+			<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
+				<ProjectIcon class="size-7"/>
+				Proyectos
+			</h2>
+			<Projects />
+		</SectionContainer>
+
+		<SectionContainer id="sobre-mi">
+			<h2 class="text-2xl font-semibold mb-6 flex gap-x-3 items-center">
+				<SobreMiIcon class="size-7"/>
+				Sobre mi
+			</h2>
+			<AboutMy />
 		</SectionContainer>
 	</main>
 	

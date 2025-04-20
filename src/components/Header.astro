@@ -1,14 +1,55 @@
-<header class="flex justify-between items-center py-5 w-full xl:w-[1120px] mx-auto">
-    <img 
-    class="rounded-full w-12 h-12"
-    src="https://pbs.twimg.com/media/FuWkqJMWcAM945l.jpg" 
-    alt="joel photo">
+<!-- components/Header.astro -->
+---
+/* Props si las necesitás */
+---
 
-    <nav class="flex flex-row gap-x-10 opacity=80">
-        <a href="#top">Inicio</a>
-        <a href="#experiencia">Experiencia</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#sobre-mi">Sobre mi</a>
-        <a href="#contacto">Contacto</a>
-    </nav>
+<header class="sticky top-4 z-50 flex justify-center items-center py-5 w-full xl:w-5xl mx-auto bg-white rounded-lg shadow-sm m-4 dark:bg-gray-800">
+  <nav class="relative flex flex-row gap-x-10 text-gray-700 dark:text-gray-100">
+    
+    <!-- highlight detrás del texto -->
+    <div
+      id="highlight"
+      class="absolute top-1/2 -translate-y-1/2 h-10 w-25 bg-blue-500 rounded-2xl transition-all duration-300 ease-in-out z-0"
+    ></div>
+
+    <!-- enlaces por encima del highlight -->
+    <a href="#top" class="menu-link relative z-10">Inicio</a>
+    <a href="#experiencia" class="menu-link relative z-10">Experiencia</a>
+    <a href="#proyectos" class="menu-link relative z-10">Proyectos</a>
+    <a href="#sobre-mi" class="menu-link relative z-10">Sobre mí</a>
+    <a href="https://www.linkedin.com/in/joel-perez-de-la-casa/" target="_blank" rel="noopener noreferrer" class="relative z-10">Contacto</a>
+  </nav>
 </header>
+
+
+<!-- 👇 Script directamente aquí dentro -->
+<script type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      const highlight = document.getElementById("highlight");
+      const links = document.querySelectorAll(".menu-link");
+  
+      function moveHighlight(el) {
+        const rect = el.getBoundingClientRect();
+        const navRect = el.parentElement.getBoundingClientRect();
+        highlight.style.left = `${rect.left - navRect.left + rect.width / 2 - 50}px`;
+      }
+  
+      const sections = document.querySelectorAll("section[id]");
+  
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            const activeLink = document.querySelector(`.menu-link[href="#${id}"]`);
+            if (activeLink) moveHighlight(activeLink);
+          }
+        });
+      }, {
+        threshold: 0.6
+      });
+  
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
+  
+  
