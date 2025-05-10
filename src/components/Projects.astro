@@ -3,6 +3,7 @@ import Badge from '../components/Badge.astro';
 import GithubIcon from "../icons/Github.astro"
 import CodeIcon from "../icons/Code.astro"
 import image from '../../public/image/capturaPL.png'
+import Github from '../icons/Github.astro';
 
 const PROJECTS = [
     {
@@ -10,21 +11,22 @@ const PROJECTS = [
         description: "Una aplicacion en React Native que permite crear i organizar quedadas o reuniones de grupos de usuarios entre amigos o a gran escala.",
         link: "https://www.google.com",
         github: "https://github.com/Planify-App",
-        image: '/image/capturaPL.png',
+        image: 'https://placehold.co/300x200',
         tags: ["React", "TailwindCSS", "NodeJS", "soket.io"],
         personalMensaje: "Proyecto de Grado"
     },
     {
-        title: "Domo",
+        title: "Domu",
         description: "Una aplicacion android que permite crear, unirse y gestionar hogares para una mejor organizacion en el dia a dia.",
-        image: 'https://placehold.co/300x200',
+        image: '/image/domuPaginaPrincipal.jpg',
         tags: ["Supabase", "Kotlin", "Android", ],
         personalMensaje: "Proyecto de Grado"
     },
     {
         title: "La charca del pejelagarto Web",
         description: "Una pagina web en angular donde puedes comprar los productos de la charca del pejelagarto.",
-        image: '/image/capturaPL.png',
+        github: "https://github.com/drepo127/charcahcrcosa",
+        image: '/image/capturaPL.jpg',
         tags: ["Angular", "NodeJS", "SQL"],
         personalMensaje: "Proyecto de Grado"
     },
@@ -48,7 +50,7 @@ const PROJECTS = [
 
             <ul class="flex flex-wrap gap-x-2 gap-y-1">
                 {tags.map(tag => (
-                    <li>{tag}</li>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-indigo-900 dark:text-indigo-300">{tag}</span>
                 ))}
             </ul>
             <div class="flex items-center gap-x-2">
