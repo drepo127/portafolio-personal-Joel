@@ -3,50 +3,99 @@
 /* Props si las necesitás */
 ---
 
-<header class="sticky top-4 z-50 flex justify-center items-center py-5 w-full xl:w-5xl mx-auto bg-white rounded-lg shadow-sm m-4 dark:bg-gray-800">
-  <nav class="relative flex flex-row gap-x-10 text-gray-700 dark:text-gray-100">
+<div class="w-full max-w-5xl mx-auto px-4 sticky top-4 z-50">
+  <header class=" z-50 flex justify-between items-center py-5 bg-white rounded-lg shadow-sm dark:bg-gray-800 px-4">  <div class="text-xl font-semibold">Joel Pérez</div>
+  <button id="hamburger" class="lg:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+    <span class="block w-6 h-0.5 bg-gray-700 dark:bg-gray-100"></span>
+    <span class="block w-6 h-0.5 bg-gray-700 dark:bg-gray-100 my-1"></span>
+    <span class="block w-6 h-0.5 bg-gray-700 dark:bg-gray-100"></span>
+  </button>
 
+  <nav id="menu" class="hidden lg:flex flex-row gap-x-10 text-gray-700 dark:text-gray-100">
     <div
       id="highlight"
       class="absolute top-1/2 -translate-y-1/2 h-10 w-25 bg-blue-500 rounded-2xl transition-all duration-300 ease-in-out z-0"
     ></div>
 
-    <a href="#top" class="menu-link relative z-10">Inicio</a>
-    <a href="#experiencia" class="menu-link relative z-10">Experiencia</a>
-    <a href="#proyectos" class="menu-link relative z-10">Proyectos</a>
-    <a href="#sobre-mi" class="menu-link relative z-10">Sobre mí</a>
-    <a href="https://www.linkedin.com/in/joel-perez-de-la-casa/" target="_blank" rel="noopener noreferrer" class="relative z-10">Contacto</a>
+    <a href="#top" class="menu-link relative z-10 px-4">Inicio</a>
+    <a href="#experiencia" class="menu-link relative z-10 px-4">Experiencia</a>
+    <a href="#proyectos" class="menu-link relative z-10 px-4">Proyectos</a>
+    <a href="#sobre-mi" class="menu-link relative z-10 px-4">Sobre mí</a>
+    <a href="https://www.linkedin.com/in/joel-perez-de-la-casa/" target="_blank" rel="noopener noreferrer" class="relative z-10 px-4">Contacto</a>
   </nav>
-</header>
 
+  <div id="mobileMenu" class="lg:hidden absolute top-14 left-0 right-0 max-w-[95vw] mx-auto bg-white dark:bg-gray-800 z-10 hidden rounded-lg shadow-lg">
+    <a href="#top" class="block px-4 py-2 text-gray-700 dark:text-gray-100">Inicio</a>
+    <a href="#experiencia" class="block px-4 py-2 text-gray-700 dark:text-gray-100">Experiencia</a>
+    <a href="#proyectos" class="block px-4 py-2 text-gray-700 dark:text-gray-100">Proyectos</a>
+    <a href="#sobre-mi" class="block px-4 py-2 text-gray-700 dark:text-gray-100">Sobre mí</a>
+    <a href="https://www.linkedin.com/in/joel-perez-de-la-casa/" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-gray-700 dark:text-gray-100">Contacto</a>
+  </div>
+</header>
+</div>
 
 <script type="module">
-    document.addEventListener("DOMContentLoaded", () => {
-      const highlight = document.getElementById("highlight");
-      const links = document.querySelectorAll(".menu-link");
-  
-      function moveHighlight(el) {
-        const rect = el.getBoundingClientRect();
-        const navRect = el.parentElement.getBoundingClientRect();
-        highlight.style.left = `${rect.left - navRect.left + rect.width / 2 - 50}px`;
+  document.addEventListener("DOMContentLoaded", () => {
+    const highlight = document.getElementById("highlight");
+    const links = document.querySelectorAll(".menu-link");
+
+    function moveHighlight(el) {
+      const rect = el.getBoundingClientRect();
+      const navRect = el.parentElement.getBoundingClientRect();
+      highlight.style.left = `${rect.left - navRect.left + rect.width / 2 + 285}px`;
+    }
+
+    // Guardar el enlace activo en el localStorage
+    function saveActiveLink(id) {
+      localStorage.setItem("activeLink", id);
+    }
+
+    // Restaurar el enlace activo desde el localStorage
+    function restoreActiveLink() {
+      const activeLinkId = localStorage.getItem("activeLink");
+      if (activeLinkId) {
+        const activeLink = document.querySelector(`.menu-link[href="#${activeLinkId}"]`);
+        if (activeLink) moveHighlight(activeLink);
       }
-  
-      const sections = document.querySelectorAll("section[id]");
-  
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute("id");
-            const activeLink = document.querySelector(`.menu-link[href="#${id}"]`);
-            if (activeLink) moveHighlight(activeLink);
+    }
+
+    // Observador de intersección para mover el highlight cuando las secciones son visibles
+    const sections = document.querySelectorAll("section[id]");
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          const activeLink = document.querySelector(`.menu-link[href="#${id}"]`);
+          if (activeLink) {
+            moveHighlight(activeLink);
+            saveActiveLink(id); // Guardar el ID del enlace activo
           }
-        });
-      }, {
-        threshold: 0.6
+        }
       });
-  
-      sections.forEach(section => observer.observe(section));
+    }, {
+      threshold: 0.6
     });
-  </script>
-  
-  
+
+    sections.forEach(section => observer.observe(section));
+
+    // Restaurar el estado del enlace activo al recargar la página
+    restoreActiveLink();
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    hamburger.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // Mover highlight cuando el usuario hace clic en un enlace
+    links.forEach(link => {
+      link.addEventListener("click", (e) => {
+        const id = e.target.getAttribute("href").substring(1); // Obtener el ID desde el atributo href
+        saveActiveLink(id); // Guardar el enlace activo
+      });
+    });
+  });
+</script>
